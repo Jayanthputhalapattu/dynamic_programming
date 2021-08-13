@@ -1,11 +1,18 @@
+memoization = {}
 def go(i,j,s):
+    
     if (i>j):
          return  1
     if (i==j):
         return 1
     if (s[i]!=s[j]):
         return 0
-    return go(i+1,j-1,s)
+    if (str(i) + " " + str(j)) in memoization:
+        return memoization[str(i) + " " + str(j)]
+    ans = go(i+1,j-1,s)
+    memoization[str(i) + " " + str(j)] = ans
+    print(memoization)
+    return  ans
 
 s =input()
 str_len = len(s)
